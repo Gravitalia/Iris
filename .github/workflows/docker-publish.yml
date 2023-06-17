@@ -20,5 +20,5 @@ jobs:
         
     - name: Build the Docker image
       run: |
-            docker build . --tag ghcr.io/gravitalia/spinoza:latest
+            docker build . --tag ghcr.io/gravitalia/iris:latest
             docker push ghcr.io/gravitalia/iris:latest
