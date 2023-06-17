@@ -1,10 +1,10 @@
-defmodule Gravitalia.Router do
+defmodule Iris.Router do
   use Plug.Router
   require EEx
 
   plug Plug.Static,
     at: "/",
-    from: :gravitalia
+    from: :iris
   plug :match
   plug Plug.Parsers,
     parsers: [:json],

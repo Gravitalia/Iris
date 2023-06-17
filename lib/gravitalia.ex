@@ -1,11 +1,11 @@
-defmodule Gravitalia do
+defmodule Iris do
   use Application
 
   def start(_type, _args) do
     children = [
       Plug.Cowboy.child_spec(
         scheme: :http,
-        plug: Gravitalia.Router,
+        plug: Iris.Router,
         options: [
           dispatch: dispatch(),
           port: 4000
@@ -13,11 +13,11 @@ defmodule Gravitalia do
       ),
       Registry.child_spec(
         keys: :duplicate,
-        name: Registry.Gravitalia
+        name: Registry.Iris
       )
     ]
 
-    opts = [strategy: :one_for_one, name: Gravitalia.Application]
+    opts = [strategy: :one_for_one, name: Iris.Application]
     Supervisor.start_link(children, opts)
   end
 
@@ -25,7 +25,7 @@ defmodule Gravitalia do
     [
       {:_,
         [
-          {"/", Gravitalia.SocketHandler, []}
+          {"/", Iris.SocketHandler, []}
         ]
       }
     ]

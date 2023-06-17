@@ -1,4 +1,4 @@
-defmodule Gravitalia.SocketHandler do
+defmodule Iris.SocketHandler do
   @behaviour :cowboy_websocket
 
   def init(request, _state) do
@@ -9,7 +9,7 @@ defmodule Gravitalia.SocketHandler do
   end
 
   def websocket_init(state) do
-    Registry.Gravitalia
+    Registry.Iris
     |> Registry.register(state.registry_key, {})
 
     {:ok, state}

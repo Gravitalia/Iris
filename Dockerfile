@@ -8,13 +8,12 @@ RUN mix do deps.get, deps.compile
 
 COPY . .
 
+ENV MIX_ENV=prod
 RUN mix release
 
 FROM alpine:3.18 AS app
 
 COPY --from=build /app/_build/prod/rel/iris ./
-
-ENV MIX_ENV=prod
 
 EXPOSE 4000
 
