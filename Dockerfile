@@ -11,13 +11,14 @@ COPY . .
 ENV MIX_ENV=prod
 RUN mix release
 
-FROM alpine:3.18 AS app
+FROM alpine:3.14 AS app
 
-RUN apk --no-cache add bash
+RUN apk --no-cache add bash openssl
+
+WORKDIR /app
 
 COPY --from=build /app/_build/prod/rel/iris ./
 
 EXPOSE 4000
 
-SHELL ["/bin/bash", "-c"]
 CMD ["bin/iris", "start"]
